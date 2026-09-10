@@ -1,0 +1,45 @@
+<div class="playlist-container">
+    <h1>Playlist de Músicas</h1>
+    <ul>
+        @for (item of playlist; track $index) {
+            <li> {{ item }} </li>
+        }
+    </ul>
+
+<div class="add-section">
+<input #novoItem type="text" placeholder="Digite uma música">
+<button (click) = "adicionarItem(novoItem.value); novoItem.value = '';">Adicionar</button>
+</div>
+
+<div class="curtidas-section">
+<p>curtidas: {{ curtidas }}</p>
+<button (click)="curtir()">+</button>
+<button (click)="descurtir()">-</button>
+</div>
+
+<ul>
+    @for (item of playlist; track $index) {
+        <li>
+            <button (click)="selecionarMusica(item)">Selecionar</button>
+            {{ item }}
+        </li>
+    }
+</ul>
+@if (selecionada) {
+    <p>Você escolheu: {{selecionada }}</p>
+} @else {
+    <p>Nenhuma música selecionada.</p>
+}
+
+<button class="alternar-tocando-button" (click)="alternarTocando()">
+    {{ tocando ? 'Pausar' : 'Tocar' }}
+</button>
+@if (tocando) {
+    <p>A música está tocando...</p>
+} @else {
+    <p>A música está pausada.</p>
+}
+</div>
+
+
+
